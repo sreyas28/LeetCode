@@ -25,9 +25,9 @@ public class ProblemNo36 {
             for(int row = 0; row  < 9; row++){
                 for (int col = 0; col < 9; col++){
                     char c = board[row][col];
-                    if(setsRow.get(col).contains(c) || setsCol.get(row).contains(c)) return false;
+                    if ( c != '.'){
+                        if(setsRow.get(col).contains(c) || setsCol.get(row).contains(c)) return false;
 
-                    else if ( c != '.'){
                         setsRow.get(col).add(c);
                         setsCol.get(row).add(c);
                     }
@@ -47,8 +47,10 @@ public class ProblemNo36 {
                     for(int row = row_Block; row < row_Block+3; row++){
                         for(int col = col_Block; col < col_Block+3; col++){
                             char c = board[row][col];
-                            if(sets.contains(c)) return false;
-                            else if(c != '.') sets.add(c);
+                            if(c != '.') {
+                                if(sets.contains(c)) return false;
+                                sets.add(c);
+                            }
                         }
                     }
                 }
