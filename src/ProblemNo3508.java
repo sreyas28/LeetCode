@@ -5,8 +5,6 @@ public class ProblemNo3508 {
 
     }
 
-    import java.util.*;
-
     class Router {
         private final LinkedHashMap<String, int[]> ordered;       // key -> packet, preserves insertion order
         private final HashMap<Integer, ArrayList<Integer>> destTimes; // dest -> list of timestamps (increasing)
