@@ -2,7 +2,7 @@ import java.util.*;
 
 class LRUCache {
 
-    class CacheNode{
+    private class CacheNode{
         int key;
         int value;
         CacheNode next = null;
