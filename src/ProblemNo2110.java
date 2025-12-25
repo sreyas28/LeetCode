@@ -1,4 +1,4 @@
-public interface ProblemNo2110 {
+public class ProblemNo2110 {
     public static void main(String[] args) {
 
     }
