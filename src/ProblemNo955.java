@@ -1,4 +1,3 @@
-import java.lang.foreign.StructLayout;
 import java.util.*;
 
 public class ProblemNo955 {
