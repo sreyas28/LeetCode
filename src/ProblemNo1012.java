@@ -1,14 +1,75 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ProblemNo1012 {
     public static void main(String[] args) {
         ProblemNo1012.Solution sol = new ProblemNo1012().new Solution();
-        System.out.println(sol.numDupDigitsAtMostN(545));
+        System.out.println(sol.numDupDigitsAtMostN(100));
     }
 
     class Solution {
+        private Integer[][][][] DP;
+
+        public int numDupDigitsAtMostN(int n) {
+            this.DP = new Integer[String.valueOf(n).length() + 1][2][2][1 << 10];
+            return n - (dfs(0, true, false, String.valueOf(n), 0) - 1);
+        }
+
+        private int dfs(int idx, boolean tight, boolean start, String limit, int mask) {
+            if (idx == limit.length()) return 1;
+
+            if (DP[idx][tight ? 1 : 0][start ? 1 : 0][mask] != null) return DP[idx][tight ? 1 : 0][start ? 1 : 0][mask];
+
+            int l = tight ? limit.charAt(idx) - '0' : 9;
+
+            int count = 0;
+            for(int i = 0; i <= l; i++){
+                if (start && ((mask & (1 << i)) != 0)) continue;
+
+                boolean startNow = start || i > 0;
+                if (startNow) mask |= (1 << i);
+
+                if (tight && i == l) count += dfs(idx + 1, true, startNow, limit, mask);
+                else count += dfs(idx + 1, false, startNow, limit, mask);
+
+                if (startNow) mask &= ~(1 << i);
+            }
+
+            DP[idx][tight ? 1 : 0][start ? 1 : 0][mask] = count;
+            return count;
+        }
+
+    }
+
+
+    // it is good but we cant use DPor memo here
+    class Solution_3 {
+        public int numDupDigitsAtMostN(int n) {
+            return n - (dfs(0, true, false, String.valueOf(n), new boolean[11]) - 1);
+        }
+
+        private int dfs(int idx, boolean tight, boolean start, String limit, boolean[] visited) {
+            if (idx == limit.length()) return 1;
+            int l = tight ? limit.charAt(idx) - '0' : 9;
+
+            int count = 0;
+            for(int i = 0; i <= l; i++){
+                if (start && visited[i]) continue;
+
+                boolean startNow = start || i > 0;
+                if (startNow) visited[i] = true;
+
+                if (tight && i == l) count += dfs(idx + 1, true, startNow, limit, visited);
+                else count += dfs(idx + 1, false, startNow, limit, visited);
+
+                if (startNow) visited[i] = false;
+            }
+
+            return count;
+        }
+
+    }
+
+    class Solution_2 {
         public int numDupDigitsAtMostN(int n) {
             return (int) (n - countUnique(n));
         }
@@ -58,7 +119,7 @@ public class ProblemNo1012 {
     }
 
     // good for rounded digits but fails for random digits
-    class Solution__ {
+    class Solution_1 {
         public int numDupDigitsAtMostN(int n) {
             if (n <= 10) return 0;
 
