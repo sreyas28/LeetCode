@@ -22,6 +22,8 @@ public class ProblemNo1510 {
                     int l = (int) Math.sqrt(i);
                     for (int j = 1; j <= l; j++) {
                         DP[i] |= !DP[i - j * j];
+
+                        if (DP[i]) break;
                     }
                 }
             }
