@@ -51,7 +51,7 @@ LeetCode/
 | | |
 |---|---|
 | **Language** | Java |
-| **Source** | [LeetCode](https://leetcode.com) |
+| **Source** | [LeetCode](https://leetcode.com) , [MyLeetCode](https://leetcode.com/u/Sreyas2003/) |
 | **Focus** | Problem of the Day + topic practice |
 
 ---
