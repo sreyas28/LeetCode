@@ -2,12 +2,34 @@ import java.util.*;
 
 public class ProblemNo133 {
 
+    public class Node {
+        public int val;
+        public List<Node> neighbors;
+
+        public Node() {
+            val = 0;
+            neighbors = new ArrayList<>();
+        }
+
+        public Node(int _val) {
+            val = _val;
+            neighbors = new ArrayList<>();
+        }
+
+        public Node(int _val, ArrayList<Node> _neighbors) {
+            val = _val;
+            neighbors = _neighbors;
+        }
+    }
+
     public static void main(String[] args) {
 
-        Node _1 = new  Node(1);
-        Node _2 = new  Node(2);
-        Node _3 = new  Node(3);
-        Node _4 = new  Node(4);
+        ProblemNo133 p = new ProblemNo133();
+
+        Node _1 = p.new Node(1);
+        Node _2 = p.new Node(2);
+        Node _3 = p.new Node(3);
+        Node _4 = p.new Node(4);
 
         _1.neighbors.add(_2);
         _1.neighbors.add(_4);
@@ -32,10 +54,10 @@ public class ProblemNo133 {
 
             Node[] nodes = new Node[adjMap.size() + 1];
 
-            for(int key : adjMap.keySet()) nodes[key] = new Node(key);
+            for (int key : adjMap.keySet()) nodes[key] = new Node(key);
 
-            for(int key : adjMap.keySet()) {
-                for( int n:  adjMap.get(key)) {
+            for (int key : adjMap.keySet()) {
+                for (int n : adjMap.get(key)) {
                     nodes[key].neighbors.add(nodes[n]);
                 }
             }
