@@ -7,6 +7,25 @@ public class ProblemNo921 {
 
     class Solution {
         public int minAddToMakeValid(String s) {
+            int balance = 0;
+            int count = 0;
+
+            for (char c : s.toCharArray()) {
+                if (c == '(') balance++;
+                else {
+                    if (balance == 0) count++;
+                    else balance--;
+                }
+            }
+
+            count += balance;
+            return count;
+        }
+    }
+
+    // a bit slower
+    class Solution_ {
+        public int minAddToMakeValid(String s) {
             Stack<Character> stack = new Stack<>();
             int count = 0;
 
