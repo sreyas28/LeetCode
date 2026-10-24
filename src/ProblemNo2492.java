@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class ProblemNoi2492 {
+public class ProblemNo2492 {
     public static void main(String[] args) {
 
     }
